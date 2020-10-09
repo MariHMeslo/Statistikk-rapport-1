@@ -1,0 +1,50 @@
+---
+title: "Del 2, reliability 1RM squat"
+output: html_document
+---
+
+## Introduction
+Load the packages
+
+```{r load packages, message=FALSE, warning=FALSE}
+
+library(tidyverse)
+
+```
+
+
+## Load the data
+```{r load data, message=FALSE, warning=FALSE}
+
+df <- data.frame(t1 = c(67.5, 135, 137.5),
+                 t2 = c(67.5, 137.5, 140.0))
+
+```
+
+## Calculation of technical error
+
+```{r calculation of tecknical error, message=FALSE, warning=FALSE}
+
+df %>%
+  mutate(change = t2 - t1) %>%
+  group_by() %>%
+  summarise(sd.change = sd(change), 
+            mean.test = mean(c(t1, t2)), 
+            te.abs = (sd.change / sqrt(2)), 
+            te.relative = (te.abs / mean.test) * 100)
+
+```
+
+## Calculation of smallest whortwhile change
+
+```{r calculation of smallest whortwhile change, message=FALSE, warning=FALSE}
+
+df %>%
+  rowwise() %>%
+  mutate(m = mean(c(t1, t2))) %>%
+  ungroup() %>%
+  summarise(sd = sd(m),
+            swc = 0.2 * sd)
+
+```
+
