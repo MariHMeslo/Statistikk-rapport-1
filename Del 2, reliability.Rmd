@@ -16,6 +16,8 @@ library(tidyverse)
 ## Load the data
 ```{r load data, message=FALSE, warning=FALSE}
 
+# Here you should replace the data frame, stored as "df" with your data.
+
 df <- data.frame(t1 = c(67.5, 135, 137.5),
                  t2 = c(67.5, 137.5, 140.0))
 

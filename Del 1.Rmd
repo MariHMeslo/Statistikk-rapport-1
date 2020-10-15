@@ -19,6 +19,17 @@ library(knitr) # for tables
 
 ```{r load data, warning=FALSE, message=FALSE}
 
+# To make this work you need to have the data in the same repository 
+# as where you have the code. Below you say that the data is in the 
+# subfolder "data" but there is no folder by that name in your repositiory
+
+# to download the data:
+
+# I comment it out as you oinly need to do it once
+# download.file(url = "https://ndownloader.figstatic.com/files/14702420", destfile = 
+# "./data/hypertrophy.csv")
+
+
 hypertrophy <- read_csv("./data/hypertrophy.csv")
 
 
@@ -37,6 +48,8 @@ hyp1 <- hypertrophy %>%
 
 
 ```{r summarise-data, message=FALSE, warning=FALSE, results = "asis"}
+
+# The code should work now!
 
 hyp1 %>%
   filter(!is.na(CLUSTER)) %>%
